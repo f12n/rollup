@@ -663,7 +663,8 @@ export default class Module {
 			const declaration = otherModule.traceExport(importDeclaration.name);
 
 			if (!declaration) {
-				this.graph.handleMissingExport(
+				this.graph.handleMissingExport.call(
+					this.graph.pluginContext,
 					importDeclaration.name,
 					this,
 					otherModule.id,
@@ -695,7 +696,8 @@ export default class Module {
 			const declaration = reexportDeclaration.module.traceExport(reexportDeclaration.localName);
 
 			if (!declaration) {
-				this.graph.handleMissingExport(
+				this.graph.handleMissingExport.call(
+					this.graph.pluginContext,
 					reexportDeclaration.localName,
 					this,
 					reexportDeclaration.module.id,
